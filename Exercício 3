@@ -1,0 +1,46 @@
+ALGORITMO MediaValoresPositivos
+
+VAR
+    valor: INTEIRO // Variável para armazenar cada valor lido
+    
+    somaValores: REAL // Acumulador da soma de todos os valores positivos
+    contadorValores: INTEIRO // Contador de quantos valores positivos foram lidos
+    
+    mediaAritmetica: REAL // Variável para armazenar o resultado da média
+
+INICIO
+    // Inicialização das variáveis
+    somaValores <- 0.0 // Inicializa a soma como real para evitar truncamento na média
+    contadorValores <- 0
+
+    ESCREVA "--- CÁLCULO DA MÉDIA ARITMÉTICA ---"
+    ESCREVA "Digite valores inteiros positivos."
+    ESCREVA "Para encerrar a leitura, digite um número negativo."
+
+    // Primeira leitura para entrar no loop
+    ESCREVA "\nDigite um valor: "
+    LEIA valor
+
+    // Loop de leitura e processamento (usando ENQUANTO-FAÇA)
+    ENQUANTO valor >= 0 FAÇA
+        somaValores <- somaValores + valor // Adiciona o valor à soma
+        contadorValores <- contadorValores + 1 // Incrementa o contador de valores
+        
+        // Próxima leitura
+        ESCREVA "Digite um valor: "
+        LEIA valor
+    FIM ENQUANTO
+
+    // --- Cálculo e Exibição do Resultado ---
+    ESCREVA "\n--- RESULTADO ---"
+
+    SE contadorValores > 0 ENTÃO // Verifica se algum valor positivo foi lido
+        mediaAritmetica <- somaValores / contadorValores
+        ESCREVA "Total de valores lidos: ", contadorValores
+        ESCREVA "Soma dos valores: ", somaValores
+        ESCREVA "Média aritmética: ", FORMATAR_REAL(mediaAritmetica, 2) // Usar FORMATAR_REAL para pseudocódigo
+    SENÃO
+        ESCREVA "Nenhum valor positivo foi digitado. Não é possível calcular a média."
+    FIM SE
+
+FIM ALGORITMO
