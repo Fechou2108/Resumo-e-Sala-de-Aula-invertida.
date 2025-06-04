@@ -1,0 +1,81 @@
+ALGORITMO PesquisaPrefeitura
+
+VAR
+    salario: REAL // Salário de cada habitante
+    numFilhos: INTEIRO // Número de filhos de cada habitante
+    
+    totalSalarios: REAL // Soma de todos os salários
+    totalFilhos: INTEIRO // Soma do número de filhos
+    totalPessoas: INTEIRO // Contador de pessoas pesquisadas
+    
+    maiorSalario: REAL // Armazena o maior salário encontrado
+    
+    pessoasSalarioAte100: INTEIRO // Contador de pessoas com salário até R$100,00
+    
+    mediaSalario: REAL
+    mediaFilhos: REAL
+    percentualSalarioAte100: REAL
+
+INICIO
+    // Inicialização das variáveis
+    totalSalarios <- 0.0
+    totalFilhos <- 0
+    totalPessoas <- 0
+    maiorSalario <- 0.0 // Inicializa com zero, pois salários são positivos
+    pessoasSalarioAte100 <- 0
+
+    ESCREVA "--- PESQUISA DA PREFEITURA ---"
+    ESCREVA "Digite um salário negativo para encerrar a pesquisa."
+
+    // Loop de leitura de dados (ENQUANTO-FAÇA)
+    ESCREVA "\nInforme o salário (R$): "
+    LEIA salario
+
+    ENQUANTO salario >= 0 FAÇA
+        totalPessoas <- totalPessoas + 1 // Incrementa o contador de pessoas
+
+        ESCREVA "Informe o número de filhos: "
+        LEIA numFilhos
+
+        // Acumula os totais para as médias
+        totalSalarios <- totalSalarios + salario
+        totalFilhos <- totalFilhos + numFilhos
+
+        // Verifica o maior salário
+        SE salario > maiorSalario ENTÃO
+            maiorSalario <- salario
+        FIM SE
+
+        // Verifica o percentual de pessoas com salário até R$100,00
+        SE salario <= 100.00 ENTÃO
+            pessoasSalarioAte100 <- pessoasSalarioAte100 + 1
+        FIM SE
+
+        // Prepara para a próxima leitura
+        ESCREVA "\nInforme o salário (R$): "
+        LEIA salario
+    FIM ENQUANTO
+
+    // --- Cálculo e Exibição dos Resultados ---
+    ESCREVA "\n--- RESULTADOS DA PESQUISA ---"
+
+    SE totalPessoas > 0 ENTÃO // Evita divisão por zero se nenhuma pessoa for cadastrada
+        // a) Média do salário da população
+        mediaSalario <- totalSalarios / totalPessoas
+        ESCREVA "a) Média do salário da população: R$ ", FORMATAR_REAL(mediaSalario, 2) // Usar FORMATAR_REAL para pseudocódigo
+
+        // b) Média do número de filhos
+        mediaFilhos <- totalFilhos / totalPessoas
+        ESCREVA "b) Média do número de filhos: ", FORMATAR_REAL(mediaFilhos, 2)
+
+        // c) Maior salário
+        ESCREVA "c) Maior salário: R$ ", FORMATAR_REAL(maiorSalario, 2)
+
+        // d) Percentual de pessoas com salário até R$100,00
+        percentualSalarioAte100 <- (pessoasSalarioAte100 / totalPessoas) * 100
+        ESCREVA "d) Percentual de pessoas com salário até R$100,00: ", FORMATAR_REAL(percentualSalarioAte100, 2), "%"
+    SENÃO
+        ESCREVA "Nenhum dado foi coletado, pois nenhum salário positivo foi inserido."
+    FIM SE
+
+FIM ALGORITMO
