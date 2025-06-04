@@ -1,0 +1,42 @@
+Vamos criar um algoritmo para descobrir quantos anos serão necessários para Zé ultrapassar a altura de Chico. Usaremos um loop para simular o crescimento ano a ano até que a condição seja satisfeita.
+
+Algoritmo de Crescimento
+ALGORITMO CrescimentoZeChico
+
+VAR
+    alturaChico: REAL // Altura de Chico em metros
+    alturaZe: REAL // Altura de Zé em metros
+    crescimentoChico: REAL // Crescimento anual de Chico em metros (convertido de cm)
+    crescimentoZe: REAL // Crescimento anual de Zé em metros (convertido de cm)
+    anos: INTEIRO // Contador de anos
+
+INICIO
+    // Inicialização das alturas em metros
+    alturaChico <- 1.50
+    alturaZe <- 1.10
+
+    // Conversão do crescimento de centímetros para metros
+    crescimentoChico <- 0.02 // 2 cm = 0.02 m
+    crescimentoZe <- 0.03 // 3 cm = 0.03 m
+
+    anos <- 0 // Inicializa o contador de anos
+
+    ESCREVA "--- SIMULAÇÃO DE CRESCIMENTO ---"
+    ESCREVA "Altura inicial de Chico: ", alturaChico, " m"
+    ESCREVA "Altura inicial de Zé:    ", alturaZe, " m"
+
+    // Loop para simular o crescimento ano a ano
+    ENQUANTO alturaZe <= alturaChico FAÇA
+        anos <- anos + 1 // Incrementa o número de anos
+        alturaChico <- alturaChico + crescimentoChico // Chico cresce
+        alturaZe <- alturaZe + crescimentoZe // Zé cresce
+
+        ESCREVA "\nApós ", anos, " ano(s):"
+        ESCREVA "Altura de Chico: ", FORMATAR_REAL(alturaChico, 2), " m"
+        ESCREVA "Altura de Zé:    ", FORMATAR_REAL(alturaZe, 2), " m"
+    FIM ENQUANTO
+
+    ESCREVA "\n--- RESULTADO FINAL ---"
+    ESCREVA "Serão necessários ", anos, " anos para que Zé seja maior que Chico."
+
+FIM ALGORITMO
